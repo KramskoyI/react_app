@@ -1,23 +1,7 @@
 .app {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.app-header {
-  margin-bottom: 2rem;
-}
-
-.nav {
-  display: flex;
-  gap: 1rem;
-}
-
-.nav a {
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.app-main {
-  font-size: 1.25rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0; /* убрали внешний отступ */
+  padding: 1rem; /* или 0 1rem, как тебе удобнее */
+  box-sizing: border-box; /* чтобы padding не раздувал ширину */
 }

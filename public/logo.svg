@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 256 256">
+
+  <!-- Box top -->
+  <path d="M48 88L128 40L208 88L128 136L48 88Z" fill="#FEF3C7"></path>
+
+  <!-- Box left -->
+  <path d="M48 88V176L128 224V136L48 88Z" fill="#FDE68A"></path>
+
+  <!-- Box right -->
+  <path d="M208 88V176L128 224V136L208 88Z" fill="#FCD34D"></path>
+
+  <!-- Address sticker -->
+  <rect x="132" y="152" width="56" height="40" rx="6" fill="#FFFFFF"></rect>
+
+  <!-- Sticker lines -->
+  <rect x="138" y="158" width="44" height="6" rx="3" fill="#CBD5E1"></rect>
+  <rect x="138" y="168" width="36" height="6" rx="3" fill="#CBD5E1"></rect>
+  <rect x="138" y="178" width="28" height="6" rx="3" fill="#CBD5E1"></rect>
+
+</svg>

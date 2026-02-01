@@ -1,37 +1,36 @@
-import { Link, Route, Routes } from 'react-router-dom'
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
 
-function Home() {
-  return <h1>Привет! Добро пожаловать на главную страницу.</h1>
-}
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import './App.css';
+import { Home, Menu, Warehouse } from './features';
 
 function About() {
-  return <p>Это пример второй страницы для проверки роутинга.</p>
+  return <p>Это пример второй страницы для проверки роутинга.</p>;
 }
 
 function NotFound() {
-  return <p>Страница не найдена.</p>
+  return <p>Страница не найдена.</p>;
 }
 
-function App() {
+export const App = () => {
+  const queryClient = new QueryClient();
+
   return (
-    <div className="app">
-      <header className="app-header">
-        <nav className="nav">
-          <Link to="/">Главная</Link>
-          <Link to="/about">О нас</Link>
-        </nav>
-      </header>
+    <QueryClientProvider client={queryClient}>
+      <div className="app">
+        <Menu />
+        <main className="app-main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/warehouse" element={<Warehouse />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </div>
+    </QueryClientProvider>
+  );
+};
 
-      <main className="app-main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </div>
-  )
-}
-
-export default App
+export default App;
