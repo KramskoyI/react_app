@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 
+import { TitlePage } from '../../shared/ui';
 import {
   type Column,
   CustomTable,
@@ -41,9 +42,7 @@ export const Warehouse = () => {
 
   return (
     <div>
-      <Typography variant="h1" component="h2" color="text.primary">
-        Склад
-      </Typography>
+      <TitlePage text="Склад" />
       <CustomTable columns={columns} data={tovar} />
     </div>
   );

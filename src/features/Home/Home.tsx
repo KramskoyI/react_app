@@ -2,18 +2,13 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Paper, Stack, Typography } from '@mui/material';
+import { TitlePage } from '@shared/ui';
 
 export const Home = () => {
   return (
     <div>
       <Stack spacing={3} sx={{ mb: 4 }}>
-        <Typography
-          variant="h4"
-          component="h1"
-          fontWeight={600}
-          color="text.primary">
-          Складское приложение
-        </Typography>
+        <TitlePage text="Складское приложение" />
 
         <Typography variant="body1" color="text.primary" maxWidth={700}>
           Приложение помогает вести учёт товара, оформлять и отслеживать заказы,

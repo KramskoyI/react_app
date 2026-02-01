@@ -2,8 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 import logo from '@assets/logo.svg';
 import { Box, Stack } from '@mui/material';
-
-import { MenuItem } from '../../shared/ui';
+import { MenuItem } from '@shared/ui';
 
 export const Menu = () => {
   const { pathname } = useLocation();
