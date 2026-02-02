@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import AddIcon from '@mui/icons-material/Add';
 import CreditCardOffOutlinedIcon from '@mui/icons-material/CreditCardOffOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -9,8 +11,13 @@ import {
   CustomTable,
   Position,
 } from '../../shared/ui/Table/Table';
+import { DeleteProductModal } from './DeleteProductModal';
+import { WriteOffModal } from './writeOffModal';
 
 export const Warehouse = () => {
+  const [isOpenDelete, setOpenDelete] = useState(false);
+  const [isOpenWrite, setOpenWrite] = useState(false);
+
   type Tovar = {
     name: string;
     sum: number;
@@ -31,13 +38,15 @@ export const Warehouse = () => {
       render: (row) => (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Tooltip title="Удалить товар со склада">
-            <IconButton>
+            <IconButton onClick={() => setOpenDelete(!isOpenDelete)}>
               <DeleteOutlineOutlinedIcon />
             </IconButton>
           </Tooltip>
           <Tooltip title="Произвести списание">
             <IconButton>
-              <CreditCardOffOutlinedIcon />
+              <CreditCardOffOutlinedIcon
+                onClick={() => setOpenWrite(!isOpenWrite)}
+              />
             </IconButton>
           </Tooltip>
         </Box>
@@ -87,6 +96,16 @@ export const Warehouse = () => {
         </Button>
       </Box>
       <CustomTable columns={columns} data={tovar} />
+      <DeleteProductModal
+        open={isOpenDelete}
+        handleClose={() => setOpenDelete(!isOpenDelete)}
+        handleAgree={() => setOpenDelete(!isOpenDelete)}
+      />
+      <WriteOffModal
+        open={isOpenWrite}
+        handleClose={() => setOpenWrite(!isOpenWrite)}
+        handleAgree={() => setOpenWrite(!isOpenWrite)}
+      />
     </div>
   );
 };

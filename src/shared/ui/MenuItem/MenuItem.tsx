@@ -21,7 +21,6 @@ export const MenuItem = ({ text, url, active }: MenuItemProps) => {
         fontSize: '0.95rem',
         fontWeight: active ? 600 : 400,
         color: active ? 'text.primary' : 'text.secondary',
-        backgroundColor: active ? 'rgba(12, 86, 245, 0.08)' : 'transparent',
         transition: 'background-color 0.15s ease, color 0.15s ease',
         '&:hover': {
           color: active ? 'text.secondary' : 'text.primary',
