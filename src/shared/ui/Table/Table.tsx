@@ -25,6 +25,8 @@ export type Column<T> = {
   render?: (row: T) => React.ReactNode;
   /** Положение title */
   align?: Position;
+  /** Ширина столбца */
+  width?: string;
 };
 
 type TableProps<T> = {
@@ -34,14 +36,15 @@ type TableProps<T> = {
 
 export const CustomTable = <T,>({ columns, data }: TableProps<T>) => {
   return (
-    <TableContainer component={Paper} sx={{ marginTop: '2rem' }}>
+    <TableContainer component={Paper} sx={{ my: '1rem' }}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            {columns.map(({ title, align }) => (
+            {columns.map(({ title, align, width }) => (
               <TableCell
                 align={align || undefined}
                 key={title}
+                width={width}
                 sx={{ color: 'text.primary' }}>
                 {title}
               </TableCell>
