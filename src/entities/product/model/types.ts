@@ -1,4 +1,8 @@
 export type Product = {
+  id: string;
   name: string;
-  sum: number;
+  sku: string;
+  quantity: number;
+  unit: string;
+  updatedAt: string;
 };

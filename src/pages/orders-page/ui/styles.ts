@@ -5,8 +5,7 @@ import {
   primaryOutlineActionButtonStyles,
 } from '@shared/lib/styles/common';
 
-export const warehouseActionsStyles: SxProps<Theme> =
-  pageActionsContainerStyles;
+export const ordersActionsStyles: SxProps<Theme> = pageActionsContainerStyles;
 
-export const addPositionButtonStyles: SxProps<Theme> =
+export const createOrderButtonStyles: SxProps<Theme> =
   primaryOutlineActionButtonStyles;

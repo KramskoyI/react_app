@@ -1,5 +1,8 @@
 import type { SxProps, Theme } from '@mui/material';
 
+import { uiColors } from '@shared/config/ui';
+import { dialogTitleTextStyles } from '@shared/lib/styles/common';
+
 const inputBaseStyles: SxProps<Theme> = {
   '& .MuiInputBase-input': {
     color: 'text.secondary',
@@ -13,7 +16,7 @@ const inputBaseStyles: SxProps<Theme> = {
   '& .MuiOutlinedInput-root': {
     color: 'text.primary',
     '& fieldset': {
-      borderColor: 'rgba(148, 163, 184, 0.6)',
+      borderColor: uiColors.inputBorder,
     },
     '&:hover fieldset': {
       borderColor: 'text.secondary',
@@ -30,9 +33,7 @@ const inputBaseStyles: SxProps<Theme> = {
   },
 };
 
-export const dialogTitleStyles: SxProps<Theme> = {
-  color: 'text.secondary',
-};
+export const dialogTitleStyles: SxProps<Theme> = dialogTitleTextStyles;
 
 export const writeOffCountFieldStyles: SxProps<Theme> = {
   mx: 2,

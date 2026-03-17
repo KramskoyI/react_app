@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,14 +8,24 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import type { Column } from './types';
+import {
+  clickableTableRowStyles,
+  expandedRowCellStyles,
+  tableHeadCellStyles,
+} from './styles';
+import type { Column, ExpandedRowConfig } from './types';
 
 type TableProps<T> = {
   columns: Column<T>[];
   data: T[];
+  expandedRowConfig?: ExpandedRowConfig<T>;
 };
 
-export const CustomTable = <T,>({ columns, data }: TableProps<T>) => {
+export const CustomTable = <T,>({
+  columns,
+  data,
+  expandedRowConfig,
+}: TableProps<T>) => {
   return (
     <TableContainer component={Paper} sx={{ my: '1rem' }}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -24,26 +36,51 @@ export const CustomTable = <T,>({ columns, data }: TableProps<T>) => {
                 align={align || undefined}
                 key={title}
                 width={width}
-                sx={{ color: 'text.primary' }}>
+                sx={tableHeadCellStyles}>
                 {title}
               </TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row, rowIdx) => (
-            <TableRow key={rowIdx}>
-              {columns.map((col, colIdx) => (
-                <TableCell key={colIdx} align={col.align}>
-                  {col.render
-                    ? col.render(row)
-                    : col.key
-                      ? String(row[col.key])
-                      : null}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
+          {data.map((row, rowIdx) => {
+            const rowKey = expandedRowConfig
+              ? expandedRowConfig.getRowKey(row)
+              : String(rowIdx);
+            const isExpanded = expandedRowConfig?.expandedRowKey === rowKey;
+
+            return (
+              <Fragment key={rowKey}>
+                <TableRow
+                  hover={Boolean(expandedRowConfig)}
+                  onClick={
+                    expandedRowConfig
+                      ? () => expandedRowConfig.onRowClick(row)
+                      : undefined
+                  }
+                  sx={expandedRowConfig ? clickableTableRowStyles : undefined}>
+                  {columns.map((col, colIdx) => (
+                    <TableCell key={colIdx} align={col.align}>
+                      {col.render
+                        ? col.render(row)
+                        : col.key
+                          ? String(row[col.key])
+                          : null}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {isExpanded && expandedRowConfig ? (
+                  <TableRow key={`${rowKey}-expanded`}>
+                    <TableCell
+                      colSpan={columns.length}
+                      sx={expandedRowCellStyles}>
+                      {expandedRowConfig.renderExpandedRow(row)}
+                    </TableCell>
+                  </TableRow>
+                ) : null}
+              </Fragment>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>

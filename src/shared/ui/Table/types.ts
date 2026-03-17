@@ -15,3 +15,10 @@ export type Column<T> = {
   align?: Position;
   width?: string;
 };
+
+export type ExpandedRowConfig<T> = {
+  expandedRowKey: string | null;
+  getRowKey: (row: T) => string;
+  onRowClick: (row: T) => void;
+  renderExpandedRow: (row: T) => ReactNode;
+};

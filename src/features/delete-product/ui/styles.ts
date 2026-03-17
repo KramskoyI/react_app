@@ -1,5 +1,5 @@
 import type { SxProps, Theme } from '@mui/material';
 
-export const dialogTitleStyles: SxProps<Theme> = {
-  color: 'text.secondary',
-};
+import { dialogTitleTextStyles } from '@shared/lib/styles/common';
+
+export const dialogTitleStyles: SxProps<Theme> = dialogTitleTextStyles;
