@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "8f48b478-c030-423c-b3e7-d024a8443fb4",
+      "name": "болт 1Х5",
+      "sku": "115",
+      "price": 0.5,
+      "quantity": 200,
+      "unit": "шт",
+      "updatedAt": "2026-03-17T13:09:20.631Z"
+    },
+    {
+      "id": "64b44b82-355d-402c-83c9-021d0b0a9901",
+      "name": "болт 3Х115",
+      "sku": "115-3",
+      "price": 2,
+      "quantity": 235,
+      "unit": "шт",
+      "updatedAt": "2026-03-17T13:09:51.215Z"
+    }
+  ],
+  "orders": [],
+  "movements": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

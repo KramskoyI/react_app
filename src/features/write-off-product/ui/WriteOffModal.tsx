@@ -3,6 +3,7 @@ import {
   type ReactElement,
   type Ref,
   forwardRef,
+  useEffect,
   useState,
 } from 'react';
 
@@ -23,7 +24,8 @@ import {
 import type { TransitionProps } from '@mui/material/transitions';
 
 import { writeOffReasonDescription, writeOffReasons } from '../model/constants';
-import type { WriteOffModalProps } from '../model/types';
+import { type WriteOffModalProps, WriteOffReason } from '../model/types';
+import { writeOffModalText } from './content';
 import {
   dialogTitleStyles,
   writeOffCountFieldStyles,
@@ -42,11 +44,25 @@ const Transition = forwardRef(function Transition(
 
 export const WriteOffModal: FC<WriteOffModalProps> = ({
   open,
+  product,
   handleClose,
   handleAgree,
 }) => {
-  const [count, setCount] = useState(0);
-  const [reason, setReason] = useState('');
+  const [count, setCount] = useState<number | ''>('');
+  const [reason, setReason] = useState<WriteOffReason | ''>('');
+
+  useEffect(() => {
+    if (!open) {
+      setCount('');
+      setReason('');
+    }
+  }, [open]);
+
+  const handleModalClose = () => {
+    setCount('');
+    setReason('');
+    handleClose();
+  };
 
   return (
     <Dialog
@@ -55,27 +71,42 @@ export const WriteOffModal: FC<WriteOffModalProps> = ({
         transition: Transition,
       }}
       keepMounted
-      onClose={handleClose}
+      onClose={handleModalClose}
       aria-describedby="write-off-dialog-description">
       <DialogTitle sx={dialogTitleStyles}>
-        Вы точно хотите списать товар со склада?
+        {writeOffModalText.title}
       </DialogTitle>
+      <DialogContent sx={{ pb: 1 }}>
+        <DialogContentText sx={{ mb: 1 }}>
+          {writeOffModalText.productLabel}: {product?.name ?? 'Не выбран'}
+        </DialogContentText>
+        <DialogContentText sx={{ mb: 1 }}>
+          {writeOffModalText.skuLabel}: {product?.sku ?? 'Не выбран'}
+        </DialogContentText>
+        <DialogContentText sx={{ mb: 0 }}>
+          {writeOffModalText.availableLabel}: {product?.quantity ?? 0}{' '}
+          {product?.unit ?? 'шт'}
+        </DialogContentText>
+      </DialogContent>
       <TextField
-        label="Количество"
+        label={writeOffModalText.countLabel}
         type="number"
         value={count}
-        onChange={(event) => setCount(Number(event.target.value))}
+        onChange={(event) => {
+          const value = event.target.value;
+          setCount(value === '' ? '' : Number(value));
+        }}
         fullWidth
         size="small"
-        InputProps={{ inputProps: { min: 0 } }}
+        InputProps={{ inputProps: { min: 0, max: product?.quantity ?? 0 } }}
         sx={writeOffCountFieldStyles}
       />
       <FormControl fullWidth size="small" sx={writeOffReasonFieldStyles}>
-        <InputLabel>Причина списания</InputLabel>
+        <InputLabel>{writeOffModalText.reasonLabel}</InputLabel>
         <Select
           value={reason}
-          label="Причина списания"
-          onChange={(event) => setReason(event.target.value)}>
+          label={writeOffModalText.reasonLabel}
+          onChange={(event) => setReason(event.target.value as WriteOffReason)}>
           {writeOffReasons.map((item) => (
             <MenuItem key={item} value={item} sx={writeOffMenuItemStyles}>
               {writeOffReasonDescription[item]}
@@ -85,13 +116,38 @@ export const WriteOffModal: FC<WriteOffModalProps> = ({
       </FormControl>
       <DialogContent>
         <DialogContentText id="write-off-dialog-description">
-          После списания товара со склада для восстановления нужно будет вручную
-          его добавить.
+          {writeOffModalText.description}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleAgree}>Списать</Button>
-        <Button onClick={handleClose}>Отмена</Button>
+        <Button onClick={handleModalClose}>{writeOffModalText.cancel}</Button>
+        <Button
+          onClick={() => {
+            if (
+              !product ||
+              !reason ||
+              count === '' ||
+              count <= 0 ||
+              count > product.quantity
+            ) {
+              return;
+            }
+
+            handleAgree({
+              product,
+              count,
+              reason,
+            });
+          }}
+          disabled={
+            !product ||
+            !reason ||
+            count === '' ||
+            count <= 0 ||
+            count > product.quantity
+          }>
+          {writeOffModalText.submit}
+        </Button>
       </DialogActions>
     </Dialog>
   );

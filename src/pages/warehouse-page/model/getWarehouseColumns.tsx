@@ -1,22 +1,20 @@
-import CreditCardOffOutlinedIcon from '@mui/icons-material/CreditCardOffOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 
 import type { Product } from '@entities/product/model';
 
 import { formatDate } from '@shared/lib/date/formatDate';
+import { formatCurrency } from '@shared/lib/number/formatCurrency';
 import { type Column, Position } from '@shared/ui';
 
 import { warehouseActionsStyles, warehouseNameTextStyles } from './styles';
 
 type GetWarehouseColumnsParams = {
-  onDeleteClick: () => void;
-  onWriteOffClick: () => void;
+  onDeleteClick: (product: Product) => void;
 };
 
 export const getWarehouseColumns = ({
   onDeleteClick,
-  onWriteOffClick,
 }: GetWarehouseColumnsParams): Column<Product>[] => [
   {
     title: 'Наименование',
@@ -32,6 +30,11 @@ export const getWarehouseColumns = ({
     align: Position.Center,
   },
   {
+    title: 'Цена',
+    align: Position.Center,
+    render: (product) => formatCurrency(product.price),
+  },
+  {
     title: 'Остаток',
     align: Position.Center,
     render: (product) => `${product.quantity} ${product.unit}`,
@@ -43,20 +46,15 @@ export const getWarehouseColumns = ({
   },
   {
     title: '',
-    render: () => (
+    width: '48px',
+    render: (product) => (
       <Box sx={warehouseActionsStyles}>
         <Tooltip title="Удалить товар со склада">
-          <IconButton onClick={onDeleteClick}>
+          <IconButton onClick={() => onDeleteClick(product)}>
             <DeleteOutlineOutlinedIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title="Произвести списание">
-          <IconButton onClick={onWriteOffClick}>
-            <CreditCardOffOutlinedIcon />
           </IconButton>
         </Tooltip>
       </Box>
     ),
-    width: '72px',
   },
 ];

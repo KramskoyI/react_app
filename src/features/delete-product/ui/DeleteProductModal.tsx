@@ -12,6 +12,7 @@ import {
 import type { TransitionProps } from '@mui/material/transitions';
 
 import type { DeleteProductModalProps } from '../model/types';
+import { deleteProductModalText } from './content';
 import { dialogTitleStyles } from './styles';
 
 const Transition = forwardRef(function Transition(
@@ -25,6 +26,7 @@ const Transition = forwardRef(function Transition(
 
 export const DeleteProductModal: FC<DeleteProductModalProps> = ({
   open,
+  product,
   handleClose,
   handleAgree,
 }) => {
@@ -38,17 +40,32 @@ export const DeleteProductModal: FC<DeleteProductModalProps> = ({
       onClose={handleClose}
       aria-describedby="delete-product-dialog-description">
       <DialogTitle sx={dialogTitleStyles}>
-        Вы точно хотите удалить товар со склада?
+        {deleteProductModalText.title}
       </DialogTitle>
       <DialogContent>
+        <DialogContentText sx={{ mb: 1 }}>
+          {deleteProductModalText.productLabel}: {product?.name ?? 'Не выбран'}
+        </DialogContentText>
+        <DialogContentText sx={{ mb: 2 }}>
+          {deleteProductModalText.skuLabel}: {product?.sku ?? 'Не выбран'}
+        </DialogContentText>
         <DialogContentText id="delete-product-dialog-description">
-          После удаления товара со склада для восстановления нужно будет вручную
-          его добавить.
+          {deleteProductModalText.description}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleAgree}>Удалить</Button>
-        <Button onClick={handleClose}>Отмена</Button>
+        <Button onClick={handleClose}>{deleteProductModalText.cancel}</Button>
+        <Button
+          onClick={() => {
+            if (!product) {
+              return;
+            }
+
+            handleAgree(product);
+          }}
+          disabled={!product}>
+          {deleteProductModalText.submit}
+        </Button>
       </DialogActions>
     </Dialog>
   );

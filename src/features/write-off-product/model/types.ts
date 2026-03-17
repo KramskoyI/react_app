@@ -1,7 +1,10 @@
+import type { Product } from '@entities/product/model';
+
 export type WriteOffModalProps = {
   open: boolean;
+  product: Product | null;
   handleClose: () => void;
-  handleAgree: () => void;
+  handleAgree: (payload: WriteOffPayload) => Promise<void> | void;
 };
 
 export enum WriteOffReason {
@@ -9,3 +12,9 @@ export enum WriteOffReason {
   Expired = 'EXPIRED',
   Damaged = 'DAMAGED',
 }
+
+export type WriteOffPayload = {
+  product: Product;
+  count: number;
+  reason: WriteOffReason;
+};

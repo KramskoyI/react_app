@@ -6,12 +6,6 @@ import { dialogTitleTextStyles } from '@shared/lib/styles/common';
 const inputBaseStyles: SxProps<Theme> = {
   '& .MuiInputBase-input': {
     color: 'text.secondary',
-    '&:focus': {
-      color: 'text.secondary',
-    },
-    '&:hover': {
-      color: 'text.secondary',
-    },
   },
   '& .MuiOutlinedInput-root': {
     color: 'text.primary',
@@ -33,19 +27,28 @@ const inputBaseStyles: SxProps<Theme> = {
   },
 };
 
-const modalFieldStyles: SxProps<Theme> = {
-  mx: 2,
-  my: 1,
-  width: '90%',
+export const dialogTitleStyles: SxProps<Theme> = {
+  ...dialogTitleTextStyles,
+  px: 5,
+  pb: 1,
+};
+
+export const productFieldsContainerStyles: SxProps<Theme> = {
+  px: 2,
+  pt: 2,
+  pb: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 2,
+};
+
+export const productFieldStyles: SxProps<Theme> = {
   ...inputBaseStyles,
 };
 
-export const dialogTitleStyles: SxProps<Theme> = dialogTitleTextStyles;
-
-export const writeOffCountFieldStyles: SxProps<Theme> = modalFieldStyles;
-
-export const writeOffReasonFieldStyles: SxProps<Theme> = modalFieldStyles;
-
-export const writeOffMenuItemStyles: SxProps<Theme> = {
-  color: 'text.secondary',
+export const skuErrorFieldStyles: SxProps<Theme> = {
+  ...inputBaseStyles,
+  '& .MuiInputBase-input': {
+    color: 'error.main',
+  },
 };
