@@ -2,11 +2,9 @@ import type { FC } from 'react';
 
 import { Typography } from '@mui/material';
 
-type TTitle = {
-  text: string;
-};
+import type { TitlePageProps } from './types';
 
-export const TitlePage: FC<TTitle> = ({ text }) => {
+export const TitlePage: FC<TitlePageProps> = ({ text }) => {
   return (
     <Typography
       variant="h4"

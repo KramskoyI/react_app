@@ -1,5 +1,4 @@
-import type { FC } from 'react';
-import React from 'react';
+import { type FC, type ReactElement, type Ref, forwardRef } from 'react';
 
 import {
   Button,
@@ -12,17 +11,14 @@ import {
 } from '@mui/material';
 import type { TransitionProps } from '@mui/material/transitions';
 
-type DeleteProductModalProps = {
-  open: boolean;
-  handleClose: () => void;
-  handleAgree: () => void;
-};
+import type { DeleteProductModalProps } from '../model/types';
+import { dialogTitleStyles } from './styles';
 
-const Transition = React.forwardRef(function Transition(
+const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: React.ReactElement<any, any>;
+    children: ReactElement<any, any>;
   },
-  ref: React.Ref<unknown>
+  ref: Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -41,7 +37,7 @@ export const DeleteProductModal: FC<DeleteProductModalProps> = ({
       keepMounted
       onClose={handleClose}
       aria-describedby="delete-product-dialog-description">
-      <DialogTitle sx={{ color: 'text.secondary' }}>
+      <DialogTitle sx={dialogTitleStyles}>
         Вы точно хотите удалить товар со склада?
       </DialogTitle>
       <DialogContent>

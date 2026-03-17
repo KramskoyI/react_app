@@ -1,14 +1,10 @@
-import type { FC, ReactElement } from 'react';
+import type { FC } from 'react';
 
 import { Paper, Stack, Typography } from '@mui/material';
 
-type TPossibilities = {
-  textTitle: string;
-  testDescription: string;
-  icon: ReactElement;
-};
+import type { PossibilitiesProps } from './types';
 
-export const Possibilities: FC<TPossibilities> = ({
+export const Possibilities: FC<PossibilitiesProps> = ({
   textTitle,
   testDescription,
   icon,

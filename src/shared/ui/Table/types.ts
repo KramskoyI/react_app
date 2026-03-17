@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactNode } from 'react';
 
 export enum Position {
   Center = 'center',
@@ -11,7 +11,7 @@ export enum Position {
 export type Column<T> = {
   key?: keyof T;
   title: string;
-  render?: (row: T) => React.ReactNode;
+  render?: (row: T) => ReactNode;
   align?: Position;
   width?: string;
 };

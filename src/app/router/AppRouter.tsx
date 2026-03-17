@@ -5,6 +5,7 @@ import { OrdersPage } from '@pages/orders-page';
 import { OrdersStatsPage } from '@pages/orders-stats-page';
 import { WarehousePage } from '@pages/warehouse-page';
 import { WarehouseStatsPage } from '@pages/warehouse-stats-page';
+
 import { Menu } from '@widgets/menu';
 
 const NotFoundPage = () => {
@@ -20,10 +21,7 @@ export const AppRouter = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/warehouse" element={<WarehousePage />} />
           <Route path="/orders" element={<OrdersPage />} />
-          <Route
-            path="/warehouse-stats"
-            element={<WarehouseStatsPage />}
-          />
+          <Route path="/warehouse-stats" element={<WarehouseStatsPage />} />
           <Route path="/orders-stats" element={<OrdersStatsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
