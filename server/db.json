@@ -5,18 +5,27 @@
       "name": "болт 1Х5",
       "sku": "115",
       "price": 0.5,
-      "quantity": 200,
+      "quantity": 1199,
       "unit": "шт",
-      "updatedAt": "2026-03-17T13:09:20.631Z"
+      "updatedAt": "2026-03-17T13:39:28.164Z"
     },
     {
       "id": "64b44b82-355d-402c-83c9-021d0b0a9901",
       "name": "болт 3Х115",
       "sku": "115-3",
       "price": 2,
-      "quantity": 235,
+      "quantity": 250,
       "unit": "шт",
-      "updatedAt": "2026-03-17T13:09:51.215Z"
+      "updatedAt": "2026-03-17T13:44:33.070Z"
+    },
+    {
+      "id": "b2f3989a-e22d-4fd1-acc1-42515c116174",
+      "name": "Болт 15Х156",
+      "sku": "15-156",
+      "price": 30,
+      "quantity": 100,
+      "unit": "шт",
+      "updatedAt": "2026-03-17T13:45:07.927Z"
     }
   ],
   "orders": [],

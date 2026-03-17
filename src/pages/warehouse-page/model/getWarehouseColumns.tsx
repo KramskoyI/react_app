@@ -1,3 +1,4 @@
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 
@@ -10,10 +11,12 @@ import { type Column, Position } from '@shared/ui';
 import { warehouseActionsStyles, warehouseNameTextStyles } from './styles';
 
 type GetWarehouseColumnsParams = {
+  onRestockClick: (product: Product) => void;
   onDeleteClick: (product: Product) => void;
 };
 
 export const getWarehouseColumns = ({
+  onRestockClick,
   onDeleteClick,
 }: GetWarehouseColumnsParams): Column<Product>[] => [
   {
@@ -46,9 +49,14 @@ export const getWarehouseColumns = ({
   },
   {
     title: '',
-    width: '48px',
+    width: '88px',
     render: (product) => (
       <Box sx={warehouseActionsStyles}>
+        <Tooltip title="Пополнить позицию">
+          <IconButton onClick={() => onRestockClick(product)}>
+            <AddCircleOutlineOutlinedIcon />
+          </IconButton>
+        </Tooltip>
         <Tooltip title="Удалить товар со склада">
           <IconButton onClick={() => onDeleteClick(product)}>
             <DeleteOutlineOutlinedIcon />

@@ -9,7 +9,6 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import {
@@ -17,11 +16,16 @@ import {
   type CreateProductPayload,
 } from '@features/add-product';
 import { DeleteProductModal } from '@features/delete-product';
+import {
+  RestockProductModal,
+  type RestockProductPayload,
+} from '@features/restock-product';
 
 import {
   createProduct,
   deleteProduct,
   fetchProducts,
+  restockProduct,
 } from '@entities/product/api/products';
 import type { Product } from '@entities/product/model';
 
@@ -35,6 +39,7 @@ const PRODUCTS_QUERY_KEY = ['products'];
 export const WarehousePage = () => {
   const queryClient = useQueryClient();
   const [isAddModalOpen, setAddModalOpen] = useState(false);
+  const [isRestockModalOpen, setRestockModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
@@ -59,6 +64,14 @@ export const WarehousePage = () => {
     },
   });
 
+  const restockProductMutation = useMutation({
+    mutationFn: restockProduct,
+    onSuccess: async () => {
+      await invalidateProducts();
+      closeRestockModal();
+    },
+  });
+
   const deleteProductMutation = useMutation({
     mutationFn: deleteProduct,
     onSuccess: async () => {
@@ -68,11 +81,20 @@ export const WarehousePage = () => {
   });
 
   const columns = getWarehouseColumns({
+    onRestockClick: (product) => {
+      setSelectedProduct(product);
+      setRestockModalOpen(true);
+    },
     onDeleteClick: (product) => {
       setSelectedProduct(product);
       setDeleteModalOpen(true);
     },
   });
+
+  const closeRestockModal = () => {
+    setRestockModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   const closeDeleteModal = () => {
     setDeleteModalOpen(false);
@@ -81,6 +103,10 @@ export const WarehousePage = () => {
 
   const handleCreateProduct = async (payload: CreateProductPayload) => {
     await createProductMutation.mutateAsync(payload);
+  };
+
+  const handleRestockProduct = async (payload: RestockProductPayload) => {
+    await restockProductMutation.mutateAsync(payload);
   };
 
   const handleDeleteProduct = async (product: Product) => {
@@ -110,8 +136,8 @@ export const WarehousePage = () => {
 
       {isError ? (
         <Alert severity="error" sx={{ mt: 2 }}>
-          Не удалось загрузить данные склада. Проверь, что `json-server` запущен
-          командой `npm run start` или `npm run server`.
+          Не удалось загрузить данные склада. Проверь, что `json-server`
+          запущен командой `npm run start` или `npm run server`.
         </Alert>
       ) : null}
 
@@ -131,6 +157,12 @@ export const WarehousePage = () => {
         existingSkus={warehouseProducts.map((product) => product.sku)}
         handleClose={() => setAddModalOpen(false)}
         handleAgree={handleCreateProduct}
+      />
+      <RestockProductModal
+        open={isRestockModalOpen}
+        product={selectedProduct}
+        handleClose={closeRestockModal}
+        handleAgree={handleRestockProduct}
       />
       <DeleteProductModal
         open={isDeleteModalOpen}
