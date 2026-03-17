@@ -4,9 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ThemeProvider } from '@mui/material';
 
-import App from './App.tsx';
+import App from './app/App.tsx';
+import { theme } from './app/styles/theme';
 import './index.css';
-import { theme } from './theme';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

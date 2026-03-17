@@ -1,4 +1,3 @@
-// vite.config.ts
 import path from 'path';
 import { defineConfig } from 'vite';
 
@@ -8,6 +7,11 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      '@app': path.resolve(__dirname, 'src/app'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@widgets': path.resolve(__dirname, 'src/widgets'),
+      '@features': path.resolve(__dirname, 'src/features'),
+      '@entities': path.resolve(__dirname, 'src/entities'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@shared': path.resolve(__dirname, 'src/shared'),
     },

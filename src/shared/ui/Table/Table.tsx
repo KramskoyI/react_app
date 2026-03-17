@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-import { TableHead } from '@mui/material';
+import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,26 +6,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 
-export enum Position {
-  Center = 'center',
-  Left = 'left',
-  Right = 'right',
-  Inherit = 'inherit',
-  Justify = 'justify',
-}
-
-export type Column<T> = {
-  /** Ключ поля (если просто показываем значение) */
-  key?: keyof T;
-  /** Заголовок колонки */
-  title: string;
-  /** Кастомный рендер ячейки */
-  render?: (row: T) => React.ReactNode;
-  /** Положение title */
-  align?: Position;
-  /** Ширина столбца */
-  width?: string;
-};
+import type { Column } from './types';
 
 type TableProps<T> = {
   columns: Column<T>[];

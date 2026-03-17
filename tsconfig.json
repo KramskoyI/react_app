@@ -7,8 +7,13 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@assets/*": ["assets/*"],
-      "@shared/*": ["shared/*"]
+      "@app/*": ["app/*"],
+      "@pages/*": ["pages/*"],
+      "@widgets/*": ["widgets/*"],
+      "@features/*": ["features/*"],
+      "@entities/*": ["entities/*"],
+      "@shared/*": ["shared/*"],
+      "@assets/*": ["assets/*"]
     }
   }
 }

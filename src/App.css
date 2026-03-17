@@ -1,7 +1,0 @@
-.app {
-  width: 100%;
-  max-width: 100%;
-  margin: 0; /* убрали внешний отступ */
-  padding: 1rem; /* или 0 1rem, как тебе удобнее */
-  box-sizing: border-box; /* чтобы padding не раздувал ширину */
-}

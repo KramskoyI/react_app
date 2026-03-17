@@ -23,7 +23,7 @@ export const MenuItem = ({ text, url, active }: MenuItemProps) => {
         color: active ? 'text.primary' : 'text.secondary',
         transition: 'background-color 0.15s ease, color 0.15s ease',
         '&:hover': {
-          color: active ? 'text.secondary' : 'text.primary',
+          color:'text.primary',
         },
       }}>
       {text}
