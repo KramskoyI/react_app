@@ -1,73 +1,169 @@
-# React + TypeScript + Vite
+# Warehouse App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для складского учета и базовой работы с заказами.
 
-Currently, two official plugins are available:
+Проект позволяет вести список товаров на складе, добавлять новые позиции, пополнять остатки и удалять товары. Также в приложении подготовлены разделы для работы с заказами и статистикой, но часть этого функционала пока находится в стадии заготовки.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Возможности
 
-## React Compiler
+На текущий момент реализовано:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- просмотр списка товаров на складе;
+- добавление новой позиции;
+- пополнение остатка товара;
+- удаление товара;
+- отображение данных из локального mock API;
+- навигация между разделами приложения.
 
-## Expanding the ESLint configuration
+Подготовлены, но пока не реализованы полностью:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- создание и редактирование заказов;
+- изменение статусов заказов;
+- аналитика по складу;
+- аналитика по заказам;
+- журнал движения товаров.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Технологии
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React 19
+- TypeScript
+- Vite
+- React Router
+- TanStack React Query
+- Material UI
+- styled-components
+- Emotion
+- json-server
+- ESLint
+- Prettier
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## Архитектура
+
+Проект организован по модульному принципу и близок к подходу Feature-Sliced Design.
+
+Структура слоев:
+
+- `app` - точка входа, роутинг, провайдеры, тема;
+- `pages` - страницы приложения;
+- `widgets` - крупные составные блоки интерфейса;
+- `features` - пользовательские сценарии и действия;
+- `entities` - бизнес-сущности, типы и API;
+- `shared` - общие UI-компоненты, утилиты и конфигурация.
+
+Такое разделение упрощает масштабирование, повторное использование кода и поддержку проекта.
+
+## Структура проекта
+
+```text
+src/
+  app/        # приложение: роутинг, провайдеры, тема
+  pages/      # страницы
+  widgets/    # виджеты интерфейса
+  features/   # пользовательские сценарии
+  entities/   # бизнес-сущности
+  shared/     # общие компоненты, утилиты, конфиг
+server/
+  db.json     # mock база данных для json-server
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Запуск проекта
 
-```js
-// eslint.config.js
-import reactDom from 'eslint-plugin-react-dom';
-import reactX from 'eslint-plugin-react-x';
+Установка зависимостей:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
 ```
+
+Запуск frontend и mock API одновременно:
+
+```bash
+npm run start
+```
+
+Отдельный запуск только frontend:
+
+```bash
+npm run dev
+```
+
+Отдельный запуск только mock API:
+
+```bash
+npm run server
+```
+
+Сборка проекта:
+
+```bash
+npm run build
+```
+
+Проверка линтером:
+
+```bash
+npm run lint
+```
+
+## Mock API
+
+Для локального хранения данных используется `json-server`.
+
+По умолчанию API доступен по адресу:
+
+```text
+http://localhost:3001
+```
+
+Базовый URL настроен в файле `src/shared/config/api.ts`.
+
+Источник данных:
+
+```text
+server/db.json
+```
+
+На текущий момент в проекте используется коллекция:
+
+- `products`
+
+Также в `db.json` уже подготовлены:
+
+- `orders`
+- `movements`
+
+## Основные маршруты
+
+- `/` - главная страница;
+- `/warehouse` - склад;
+- `/warehouse-history` - история изменений на складе;
+- `/orders` - заказы;
+- `/orders-stats` - статистика по заказам.
+
+## Текущее состояние проекта
+
+Проект находится на стадии MVP / учебного прототипа.
+
+Лучше всего реализован модуль склада:
+
+- получение товаров с сервера;
+- добавление;
+- пополнение;
+- удаление;
+- обновление данных через React Query.
+
+Раздел заказов и страницы статистики пока подготовлены архитектурно, но требуют дальнейшей реализации.
+
+## Планы по развитию
+
+- подключить API для заказов;
+- реализовать создание, редактирование и удаление заказов;
+- добавить смену статусов заказов;
+- реализовать историю складских операций;
+- добавить фильтрацию, поиск и сортировку;
+- расширить статистические страницы графиками и KPI;
+- добавить обработку ошибок и уведомления;
+- покрыть проект тестами.
+
+## Автор
+
+Проект разработан как учебное или демонстрационное приложение для отработки фронтенд-архитектуры, CRUD-операций и модульной организации React-приложения.
