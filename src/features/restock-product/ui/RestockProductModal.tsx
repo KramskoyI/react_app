@@ -1,6 +1,5 @@
 import {
   forwardRef,
-  useEffect,
   useState,
   type FC,
   type ReactElement,
@@ -25,7 +24,7 @@ import { dialogTitleStyles, restockCountFieldStyles } from './styles';
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: ReactElement<any, any>;
+    children: ReactElement;
   },
   ref: Ref<unknown>
 ) {
@@ -40,12 +39,6 @@ export const RestockProductModal: FC<RestockProductModalProps> = ({
 }) => {
   const [count, setCount] = useState<number | ''>('');
 
-  useEffect(() => {
-    if (!open) {
-      setCount('');
-    }
-  }, [open]);
-
   const handleModalClose = () => {
     setCount('');
     handleClose();
@@ -57,7 +50,6 @@ export const RestockProductModal: FC<RestockProductModalProps> = ({
       slots={{
         transition: Transition,
       }}
-      keepMounted
       onClose={handleModalClose}
       aria-describedby="restock-product-dialog-description">
       <DialogTitle sx={dialogTitleStyles}>

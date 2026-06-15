@@ -7,3 +7,10 @@ export type Product = {
   unit: string;
   updatedAt: string;
 };
+
+export type CreateProductPayload = Omit<Product, 'id' | 'updatedAt'>;
+
+export type RestockProductPayload = {
+  product: Product;
+  count: number;
+};

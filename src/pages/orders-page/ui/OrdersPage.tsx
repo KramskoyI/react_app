@@ -3,7 +3,7 @@ import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Button } from '@mui/material';
 
-import { type Order, orders } from '@entities/order/model';
+import { type Order, orders } from '@entities/order';
 
 import { CustomTable, TitlePage } from '@shared/ui';
 
@@ -16,11 +16,11 @@ export const OrdersPage = () => {
 
   const handleCreateOrder = () => {};
 
-  const handleDeleteOrder = (_order: Order) => {};
+  const handleDeleteOrder: (order: Order) => void = () => {};
 
-  const handleEditOrder = (_order: Order) => {};
+  const handleEditOrder: (order: Order) => void = () => {};
 
-  const handleStatusChange = (_order: Order) => {};
+  const handleStatusChange: (order: Order) => void = () => {};
 
   const columns = getOrdersColumns({
     onDeleteClick: handleDeleteOrder,

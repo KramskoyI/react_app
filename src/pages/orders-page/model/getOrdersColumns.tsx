@@ -7,7 +7,7 @@ import {
   type Order,
   OrderStatus,
   orderStatusLabel,
-} from '@entities/order/model';
+} from '@entities/order';
 
 import { formatDate } from '@shared/lib/date/formatDate';
 import { type Column, Position } from '@shared/ui';

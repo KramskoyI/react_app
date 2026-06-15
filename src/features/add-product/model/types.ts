@@ -1,6 +1,4 @@
-import type { Product } from '@entities/product/model';
-
-export type CreateProductPayload = Omit<Product, 'id' | 'updatedAt'>;
+import type { CreateProductPayload } from '@entities/product';
 
 export type AddProductModalProps = {
   open: boolean;

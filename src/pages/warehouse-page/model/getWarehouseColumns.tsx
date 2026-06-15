@@ -2,7 +2,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 
-import type { Product } from '@entities/product/model';
+import type { Product } from '@entities/product';
 
 import { formatDate } from '@shared/lib/date/formatDate';
 import { formatCurrency } from '@shared/lib/number/formatCurrency';

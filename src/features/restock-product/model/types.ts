@@ -1,9 +1,4 @@
-import type { Product } from '@entities/product/model';
-
-export type RestockProductPayload = {
-  product: Product;
-  count: number;
-};
+import type { Product, RestockProductPayload } from '@entities/product';
 
 export type RestockProductModalProps = {
   open: boolean;

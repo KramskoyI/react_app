@@ -3,7 +3,6 @@ import {
   type ReactElement,
   type Ref,
   forwardRef,
-  useEffect,
   useState,
 } from 'react';
 
@@ -31,7 +30,7 @@ import {
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: ReactElement<any, any>;
+    children: ReactElement;
   },
   ref: Ref<unknown>
 ) {
@@ -50,12 +49,6 @@ export const AddProductModal: FC<AddProductModalProps> = ({
   const [quantity, setQuantity] = useState<number | ''>('');
   const [unit, setUnit] = useState('шт');
   const [skuError, setSkuError] = useState('');
-
-  useEffect(() => {
-    if (!open) {
-      setSkuError('');
-    }
-  }, [open]);
 
   const resetForm = () => {
     setName('');
@@ -111,7 +104,6 @@ export const AddProductModal: FC<AddProductModalProps> = ({
       slots={{
         transition: Transition,
       }}
-      keepMounted
       onClose={handleModalClose}
       aria-describedby="add-product-dialog-description">
       <DialogTitle sx={dialogTitleStyles}>

@@ -11,23 +11,19 @@ import {
 } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import {
-  AddProductModal,
-  type CreateProductPayload,
-} from '@features/add-product';
+import { AddProductModal } from '@features/add-product';
 import { DeleteProductModal } from '@features/delete-product';
-import {
-  RestockProductModal,
-  type RestockProductPayload,
-} from '@features/restock-product';
+import { RestockProductModal } from '@features/restock-product';
 
 import {
   createProduct,
   deleteProduct,
   fetchProducts,
   restockProduct,
-} from '@entities/product/api/products';
-import type { Product } from '@entities/product/model';
+  type CreateProductPayload,
+  type Product,
+  type RestockProductPayload,
+} from '@entities/product';
 
 import { CustomTable, TitlePage } from '@shared/ui';
 

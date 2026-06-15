@@ -3,7 +3,6 @@ import {
   type ReactElement,
   type Ref,
   forwardRef,
-  useEffect,
   useState,
 } from 'react';
 
@@ -35,7 +34,7 @@ import {
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: ReactElement<any, any>;
+    children: ReactElement;
   },
   ref: Ref<unknown>
 ) {
@@ -51,13 +50,6 @@ export const WriteOffModal: FC<WriteOffModalProps> = ({
   const [count, setCount] = useState<number | ''>('');
   const [reason, setReason] = useState<WriteOffReason | ''>('');
 
-  useEffect(() => {
-    if (!open) {
-      setCount('');
-      setReason('');
-    }
-  }, [open]);
-
   const handleModalClose = () => {
     setCount('');
     setReason('');
@@ -70,7 +62,6 @@ export const WriteOffModal: FC<WriteOffModalProps> = ({
       slots={{
         transition: Transition,
       }}
-      keepMounted
       onClose={handleModalClose}
       aria-describedby="write-off-dialog-description">
       <DialogTitle sx={dialogTitleStyles}>

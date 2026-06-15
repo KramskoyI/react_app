@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from '@mui/material';
 
-import type { Order } from '@entities/order/model';
+import type { Order } from '@entities/order';
 
 import { formatDate } from '@shared/lib/date/formatDate';
 

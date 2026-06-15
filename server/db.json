@@ -26,6 +26,15 @@
       "quantity": 100,
       "unit": "шт",
       "updatedAt": "2026-03-17T13:45:07.927Z"
+    },
+    {
+      "id": "09442c65-fa8e-4d6a-8d43-6fd17029d4ba",
+      "name": "t5ujikghnjhfsd",
+      "sku": "545436764",
+      "price": 1000,
+      "quantity": 3554767809,
+      "unit": "шт",
+      "updatedAt": "2026-03-21T19:48:06.849Z"
     }
   ],
   "orders": [],

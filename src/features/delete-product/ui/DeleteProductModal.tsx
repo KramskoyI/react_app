@@ -17,7 +17,7 @@ import { dialogTitleStyles } from './styles';
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
-    children: ReactElement<any, any>;
+    children: ReactElement;
   },
   ref: Ref<unknown>
 ) {
@@ -36,7 +36,6 @@ export const DeleteProductModal: FC<DeleteProductModalProps> = ({
       slots={{
         transition: Transition,
       }}
-      keepMounted
       onClose={handleClose}
       aria-describedby="delete-product-dialog-description">
       <DialogTitle sx={dialogTitleStyles}>

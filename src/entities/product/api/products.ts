@@ -1,9 +1,10 @@
-import type { CreateProductPayload } from '@features/add-product';
-import type { RestockProductPayload } from '@features/restock-product';
-
 import { API_BASE_URL } from '@shared/config/api';
 
-import type { Product } from '../model';
+import type {
+  CreateProductPayload,
+  Product,
+  RestockProductPayload,
+} from '../model/types';
 
 const PRODUCTS_URL = `${API_BASE_URL}/products`;
 
