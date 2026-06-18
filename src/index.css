@@ -2,7 +2,12 @@
   --font-main:
     'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
-  background-color: #111827;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
@@ -11,6 +16,9 @@ body {
   font-size: 14px;
 }
 
-.table-cell {
-  font-size: 13px;
+html:not(.theme-ready) *,
+html.theme-preload *,
+html.theme-preload body,
+html.theme-preload #root {
+  transition: none !important;
 }

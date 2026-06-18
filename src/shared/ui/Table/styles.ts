@@ -1,6 +1,12 @@
 import type { SxProps, Theme } from '@mui/material';
 
-import { uiColors } from '@shared/config/ui';
+export const tableContainerStyles: SxProps<Theme> = {
+  my: '1rem',
+};
+
+export const tableRootStyles: SxProps<Theme> = {
+  minWidth: 500,
+};
 
 export const tableHeadCellStyles: SxProps<Theme> = {
   color: 'text.primary',
@@ -12,6 +18,6 @@ export const clickableTableRowStyles: SxProps<Theme> = {
 
 export const expandedRowCellStyles: SxProps<Theme> = {
   borderBottom: 0,
-  backgroundColor: uiColors.expandedRowBackground,
+  backgroundColor: 'var(--app-expanded-row-background)',
   py: 2,
 };

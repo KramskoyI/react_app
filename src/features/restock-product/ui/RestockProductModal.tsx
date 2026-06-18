@@ -20,7 +20,12 @@ import type { TransitionProps } from '@mui/material/transitions';
 
 import type { RestockProductModalProps } from '../model/types';
 import { restockProductModalText } from './content';
-import { dialogTitleStyles, restockCountFieldStyles } from './styles';
+import {
+  dialogTitleStyles,
+  restockCountFieldStyles,
+  restockProductInfoContentStyles,
+  restockProductInfoTextStyles,
+} from './styles';
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -55,14 +60,14 @@ export const RestockProductModal: FC<RestockProductModalProps> = ({
       <DialogTitle sx={dialogTitleStyles}>
         {restockProductModalText.title}
       </DialogTitle>
-      <DialogContent sx={{ pb: 1 }}>
-        <DialogContentText sx={{ mb: 1 }}>
+      <DialogContent sx={restockProductInfoContentStyles}>
+        <DialogContentText sx={restockProductInfoTextStyles}>
           {restockProductModalText.productLabel}: {product?.name ?? 'Не выбран'}
         </DialogContentText>
-        <DialogContentText sx={{ mb: 1 }}>
+        <DialogContentText sx={restockProductInfoTextStyles}>
           {restockProductModalText.skuLabel}: {product?.sku ?? 'Не выбран'}
         </DialogContentText>
-        <DialogContentText sx={{ mb: 0 }}>
+        <DialogContentText>
           {restockProductModalText.currentQuantityLabel}: {product?.quantity ?? 0}{' '}
           {product?.unit ?? 'шт'}
         </DialogContentText>

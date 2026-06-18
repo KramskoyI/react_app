@@ -2,28 +2,33 @@ import { Stack, Typography } from '@mui/material';
 
 import { Possibilities, TitlePage } from '@shared/ui';
 
+import { homePageText } from '../content';
 import { possibilities } from '../model';
+import {
+  homeCapabilitiesDescriptionStyles,
+  homeCapabilitiesSectionStyles,
+  homeCapabilitiesTitleStyles,
+  homeIntroSectionStyles,
+  homeIntroTextStyles,
+} from './styles';
 
 export const HomePage = () => {
   return (
     <div>
-      <Stack spacing={3} sx={{ mb: 4 }}>
-        <TitlePage text="Складское приложение" />
+      <Stack spacing={3} sx={homeIntroSectionStyles}>
+        <TitlePage text={homePageText.title} />
 
-        <Typography variant="body1" color="text.primary" maxWidth={700}>
-          Приложение помогает вести учёт товара, оформлять и отслеживать заказы,
-          видеть движение остатков и не держать всё в голове или разрозненных
-          таблицах. Рабочее место, где собрано всё, что нужно для ежедневной
-          операционной работы.
+        <Typography variant="body1" sx={homeIntroTextStyles}>
+          {homePageText.description}
         </Typography>
       </Stack>
 
-      <Stack spacing={1} sx={{ mb: 2 }}>
-        <Typography variant="h6" fontWeight={600} color="text.primary">
-          Основные возможности
+      <Stack spacing={1} sx={homeCapabilitiesSectionStyles}>
+        <Typography variant="h6" sx={homeCapabilitiesTitleStyles}>
+          {homePageText.capabilitiesTitle}
         </Typography>
-        <Typography variant="body2" color="text.primary">
-          Краткое описание ключевых сценариев, которые закрывает система.
+        <Typography variant="body2" sx={homeCapabilitiesDescriptionStyles}>
+          {homePageText.capabilitiesDescription}
         </Typography>
       </Stack>
 

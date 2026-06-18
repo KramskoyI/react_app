@@ -4,6 +4,7 @@ import type { Order } from '@entities/order';
 
 import { formatDate } from '@shared/lib/date/formatDate';
 
+import { ordersPageText } from './content';
 import {
   orderDetailsHeaderStyles,
   orderDetailsItemStyles,
@@ -18,10 +19,10 @@ export const renderOrderDetails = (order: Order) => {
     <Stack spacing={1.5}>
       <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
         <Typography variant="subtitle2" sx={orderDetailsHeaderStyles}>
-          Состав заказа
+          {ordersPageText.details.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Обновлено: {formatDate(order.updatedAt)}
+          {ordersPageText.details.updatedAt}: {formatDate(order.updatedAt)}
         </Typography>
       </Stack>
 
@@ -38,11 +39,11 @@ export const renderOrderDetails = (order: Order) => {
                 variant="caption"
                 color="text.secondary"
                 sx={orderDetailsTextWrapStyles}>
-                ID товара: {item.productId}
+                {ordersPageText.details.productId}: {item.productId}
               </Typography>
             </Box>
             <Typography variant="body2" sx={orderDetailsQuantityStyles}>
-              {item.quantity} шт
+              {item.quantity} {ordersPageText.details.quantityUnit}
             </Typography>
           </Box>
         ))}

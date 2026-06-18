@@ -35,6 +35,15 @@
       "quantity": 3554767809,
       "unit": "шт",
       "updatedAt": "2026-03-21T19:48:06.849Z"
+    },
+    {
+      "id": "1526c472-b67b-41ef-a315-563af1312aa8",
+      "name": "sdhfgh",
+      "sku": "456",
+      "price": 636,
+      "quantity": 346,
+      "unit": "шт",
+      "updatedAt": "2026-06-15T18:34:12.888Z"
     }
   ],
   "orders": [],

@@ -7,8 +7,10 @@ import { WarehousePage } from '@pages/warehouse-page';
 import { WarehouseStatsPage } from '@pages/warehouse-stats-page';
 import { Menu } from '@widgets/menu';
 
+import { routerText } from './content';
+
 const NotFoundPage = () => {
-  return <p>Страница не найдена.</p>;
+  return <p>{routerText.notFound}</p>;
 };
 
 export const AppRouter = () => {

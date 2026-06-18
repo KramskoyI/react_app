@@ -2,15 +2,14 @@ import { Stack, Typography } from '@mui/material';
 
 import { TitlePage } from '@shared/ui';
 
+import { warehouseStatsPageText } from './content';
+
 export const WarehouseStatsPage = () => {
   return (
     <Stack spacing={3}>
-      <TitlePage text="История изменений на складе" />
+      <TitlePage text={warehouseStatsPageText.title} />
       <Typography variant="body1" color="text.primary" maxWidth={720}>
-        Раздел для просмотра истории движения товаров на складе: поступления,
-        удаления, изменения остатков и другие складские события. Позже сюда
-        можно добавить временные графики, фильтры по периодам и журнал
-        операций.
+        {warehouseStatsPageText.description}
       </Typography>
     </Stack>
   );

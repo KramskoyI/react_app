@@ -1,9 +1,9 @@
 import type { SxProps, Theme } from '@mui/material';
 
-import { uiColors, uiLayout } from '@shared/config/ui';
+import { uiLayout } from '@shared/config/ui';
 
 export const readableTextStyles: SxProps<Theme> = {
-  color: uiColors.readableText,
+  color: 'text.primary',
   fontWeight: 600,
 };
 
@@ -26,6 +26,11 @@ export const primaryOutlineActionButtonStyles: SxProps<Theme> = {
   justifyContent: 'center',
   textTransform: 'none',
   borderColor: 'text.primary',
+  '&:focus-visible': {
+    outline: '2px solid',
+    outlineColor: 'primary.main',
+    outlineOffset: 2,
+  },
 };
 
 export const dialogTitleTextStyles: SxProps<Theme> = {

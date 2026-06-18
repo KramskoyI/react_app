@@ -8,7 +8,8 @@ import { formatDate } from '@shared/lib/date/formatDate';
 import { formatCurrency } from '@shared/lib/number/formatCurrency';
 import { type Column, Position } from '@shared/ui';
 
-import { warehouseActionsStyles, warehouseNameTextStyles } from './styles';
+import { warehousePageText } from './content';
+import { warehouseNameTextStyles, warehouseRowActionsStyles } from './styles';
 
 type GetWarehouseColumnsParams = {
   onRestockClick: (product: Product) => void;
@@ -20,7 +21,7 @@ export const getWarehouseColumns = ({
   onDeleteClick,
 }: GetWarehouseColumnsParams): Column<Product>[] => [
   {
-    title: 'Наименование',
+    title: warehousePageText.columns.name,
     render: (product) => (
       <Typography variant="body2" sx={warehouseNameTextStyles}>
         {product.name}
@@ -29,21 +30,21 @@ export const getWarehouseColumns = ({
   },
   {
     key: 'sku',
-    title: 'SKU',
+    title: warehousePageText.columns.sku,
     align: Position.Center,
   },
   {
-    title: 'Цена',
+    title: warehousePageText.columns.price,
     align: Position.Center,
     render: (product) => formatCurrency(product.price),
   },
   {
-    title: 'Остаток',
+    title: warehousePageText.columns.quantity,
     align: Position.Center,
     render: (product) => `${product.quantity} ${product.unit}`,
   },
   {
-    title: 'Обновлено',
+    title: warehousePageText.columns.updatedAt,
     align: Position.Center,
     render: (product) => formatDate(product.updatedAt),
   },
@@ -51,13 +52,13 @@ export const getWarehouseColumns = ({
     title: '',
     width: '88px',
     render: (product) => (
-      <Box sx={warehouseActionsStyles}>
-        <Tooltip title="Пополнить позицию">
+      <Box sx={warehouseRowActionsStyles}>
+        <Tooltip title={warehousePageText.actions.restock}>
           <IconButton onClick={() => onRestockClick(product)}>
             <AddCircleOutlineOutlinedIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Удалить товар со склада">
+        <Tooltip title={warehousePageText.actions.delete}>
           <IconButton onClick={() => onDeleteClick(product)}>
             <DeleteOutlineOutlinedIcon />
           </IconButton>

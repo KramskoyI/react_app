@@ -1,51 +1,26 @@
 import type { SxProps, Theme } from '@mui/material';
 
-import { uiColors } from '@shared/config/ui';
-import { dialogTitleTextStyles } from '@shared/lib/styles/common';
+import {
+  dialogContentCompactStyles,
+  dialogContentDescriptionTightStyles,
+  dialogTitleStyles as sharedDialogTitleStyles,
+  modalFieldWithHorizontalSpacingStyles,
+} from '@shared/lib/styles/forms';
 
-const inputBaseStyles: SxProps<Theme> = {
-  '& .MuiInputBase-input': {
-    color: 'text.secondary',
-    '&:focus': {
-      color: 'text.secondary',
-    },
-    '&:hover': {
-      color: 'text.secondary',
-    },
-  },
-  '& .MuiOutlinedInput-root': {
-    color: 'text.primary',
-    '& fieldset': {
-      borderColor: uiColors.inputBorder,
-    },
-    '&:hover fieldset': {
-      borderColor: 'text.secondary',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: 'text.secondary',
-    },
-  },
-  '& .MuiInputLabel-root': {
-    color: 'text.secondary',
-  },
-  '& .MuiInputLabel-root.Mui-focused': {
-    color: 'text.secondary',
-  },
-};
+export const dialogTitleStyles: SxProps<Theme> = sharedDialogTitleStyles;
 
-const modalFieldStyles: SxProps<Theme> = {
-  mx: 2,
-  my: 1,
-  width: '90%',
-  ...inputBaseStyles,
-};
+export const writeOffCountFieldStyles: SxProps<Theme> =
+  modalFieldWithHorizontalSpacingStyles;
 
-export const dialogTitleStyles: SxProps<Theme> = dialogTitleTextStyles;
-
-export const writeOffCountFieldStyles: SxProps<Theme> = modalFieldStyles;
-
-export const writeOffReasonFieldStyles: SxProps<Theme> = modalFieldStyles;
+export const writeOffReasonFieldStyles: SxProps<Theme> =
+  modalFieldWithHorizontalSpacingStyles;
 
 export const writeOffMenuItemStyles: SxProps<Theme> = {
   color: 'text.secondary',
 };
+
+export const writeOffProductInfoContentStyles: SxProps<Theme> =
+  dialogContentCompactStyles;
+
+export const writeOffProductInfoTextStyles: SxProps<Theme> =
+  dialogContentDescriptionTightStyles;

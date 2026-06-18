@@ -5,6 +5,57 @@
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>god_box</title>
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+      }
+
+      html[data-theme='light'] {
+        background-color: #f4f5f7;
+        color: #111827;
+        color-scheme: light;
+      }
+
+      html[data-theme='dark'] {
+        background-color: #0b1220;
+        color: #e5e7eb;
+        color-scheme: dark;
+      }
+
+      html[data-theme='light'] body {
+        background-color: #f4f5f7;
+        color: #111827;
+      }
+
+      html[data-theme='dark'] body {
+        background-color: #0b1220;
+        color: #e5e7eb;
+      }
+
+      html.theme-preload *,
+      html.theme-preload body,
+      html.theme-preload #root {
+        transition: none !important;
+      }
+    </style>
+    <script>
+      (function () {
+        var storageKey = 'app-theme-mode';
+        var root = document.documentElement;
+        var savedMode = localStorage.getItem(storageKey);
+        var mode =
+          savedMode === 'light' || savedMode === 'dark'
+            ? savedMode
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+
+        root.setAttribute('data-theme', mode);
+        root.classList.add('theme-preload');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

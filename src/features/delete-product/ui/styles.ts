@@ -1,5 +1,15 @@
 import type { SxProps, Theme } from '@mui/material';
 
-import { dialogTitleTextStyles } from '@shared/lib/styles/common';
+import {
+  dialogContentDescriptionLooseStyles,
+  dialogContentDescriptionTightStyles,
+  dialogTitleStyles as sharedDialogTitleStyles,
+} from '@shared/lib/styles/forms';
 
-export const dialogTitleStyles: SxProps<Theme> = dialogTitleTextStyles;
+export const dialogTitleStyles: SxProps<Theme> = sharedDialogTitleStyles;
+
+export const deleteProductInfoTextStyles: SxProps<Theme> =
+  dialogContentDescriptionTightStyles;
+
+export const deleteProductInfoTextLooseStyles: SxProps<Theme> =
+  dialogContentDescriptionLooseStyles;

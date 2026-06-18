@@ -7,8 +7,9 @@ import { type Order, orders } from '@entities/order';
 
 import { CustomTable, TitlePage } from '@shared/ui';
 
-import { getOrdersColumns } from '../model/getOrdersColumns';
-import { renderOrderDetails } from '../model/renderOrderDetails';
+import { ordersPageText } from './content';
+import { getOrdersColumns } from './getOrdersColumns';
+import { renderOrderDetails } from './renderOrderDetails';
 import { createOrderButtonStyles, ordersActionsStyles } from './styles';
 
 export const OrdersPage = () => {
@@ -34,7 +35,7 @@ export const OrdersPage = () => {
 
   return (
     <div>
-      <TitlePage text="Заказы" />
+      <TitlePage text={ordersPageText.title} />
       <Box sx={ordersActionsStyles}>
         <Button
           variant="outlined"
@@ -42,7 +43,7 @@ export const OrdersPage = () => {
           startIcon={<AddIcon />}
           sx={createOrderButtonStyles}
           onClick={handleCreateOrder}>
-          Создать заказ
+          {ordersPageText.createButton}
         </Button>
       </Box>
       <CustomTable

@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "check:text": "node scripts/check-mojibake.mjs",
     "dev": "vite",
     "server": "json-server --watch server/db.json --port 3001",
     "start": "npm-run-all --parallel server dev",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "build": "npm run check:text && tsc -b && vite build",
+    "lint": "npm run check:text && eslint .",
     "preview": "vite preview"
   },
   "dependencies": {

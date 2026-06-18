@@ -29,6 +29,8 @@ import {
   dialogTitleStyles,
   writeOffCountFieldStyles,
   writeOffMenuItemStyles,
+  writeOffProductInfoContentStyles,
+  writeOffProductInfoTextStyles,
   writeOffReasonFieldStyles,
 } from './styles';
 
@@ -67,14 +69,14 @@ export const WriteOffModal: FC<WriteOffModalProps> = ({
       <DialogTitle sx={dialogTitleStyles}>
         {writeOffModalText.title}
       </DialogTitle>
-      <DialogContent sx={{ pb: 1 }}>
-        <DialogContentText sx={{ mb: 1 }}>
+      <DialogContent sx={writeOffProductInfoContentStyles}>
+        <DialogContentText sx={writeOffProductInfoTextStyles}>
           {writeOffModalText.productLabel}: {product?.name ?? 'Не выбран'}
         </DialogContentText>
-        <DialogContentText sx={{ mb: 1 }}>
+        <DialogContentText sx={writeOffProductInfoTextStyles}>
           {writeOffModalText.skuLabel}: {product?.sku ?? 'Не выбран'}
         </DialogContentText>
-        <DialogContentText sx={{ mb: 0 }}>
+        <DialogContentText>
           {writeOffModalText.availableLabel}: {product?.quantity ?? 0}{' '}
           {product?.unit ?? 'шт'}
         </DialogContentText>

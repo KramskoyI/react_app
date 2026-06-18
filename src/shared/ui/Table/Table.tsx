@@ -12,6 +12,8 @@ import {
   clickableTableRowStyles,
   expandedRowCellStyles,
   tableHeadCellStyles,
+  tableContainerStyles,
+  tableRootStyles,
 } from './styles';
 import type { Column, ExpandedRowConfig } from './types';
 
@@ -27,8 +29,8 @@ export const CustomTable = <T,>({
   expandedRowConfig,
 }: TableProps<T>) => {
   return (
-    <TableContainer component={Paper} sx={{ my: '1rem' }}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+    <TableContainer component={Paper} sx={tableContainerStyles}>
+      <Table sx={tableRootStyles} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             {columns.map(({ title, align, width }) => (

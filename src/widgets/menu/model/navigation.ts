@@ -1,15 +1,17 @@
+import { navigationText } from './content';
+
 export type NavigationItem = {
   text: string;
   url: string;
 };
 
 export const navigationItems: NavigationItem[] = [
-  { text: 'Главная', url: '/' },
-  { text: 'Склад', url: '/warehouse' },
+  { text: navigationText.home, url: '/' },
+  { text: navigationText.warehouse, url: '/warehouse' },
   {
-    text: 'История изменений на складе',
+    text: navigationText.warehouseHistory,
     url: '/warehouse-history',
   },
-  { text: 'Заказы', url: '/orders' },
-  { text: 'Статистика заказов', url: '/orders-stats' },
+  { text: navigationText.orders, url: '/orders' },
+  { text: navigationText.ordersStats, url: '/orders-stats' },
 ];

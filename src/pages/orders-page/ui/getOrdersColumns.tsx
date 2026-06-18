@@ -3,17 +3,14 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import SyncAltOutlinedIcon from '@mui/icons-material/SyncAltOutlined';
 import { Box, Chip, IconButton, Tooltip, Typography } from '@mui/material';
 
-import {
-  type Order,
-  OrderStatus,
-  orderStatusLabel,
-} from '@entities/order';
+import { type Order, OrderStatus, orderStatusLabel } from '@entities/order';
 
 import { formatDate } from '@shared/lib/date/formatDate';
 import { type Column, Position } from '@shared/ui';
 
-import { orderActionsStyles, orderNumberTextStyles } from './styles';
-import type { OrderActionHandlers } from './types';
+import type { OrderActionHandlers } from '../model/types';
+import { ordersPageText } from './content';
+import { orderNumberTextStyles, orderRowActionsStyles } from './styles';
 
 const getStatusChipColor = (
   status: OrderStatus
@@ -38,7 +35,7 @@ export const getOrdersColumns = ({
   onStatusChangeClick,
 }: OrderActionHandlers): Column<Order>[] => [
   {
-    title: 'Номер заказа',
+    title: ordersPageText.columns.number,
     render: (order) => (
       <Typography variant="body2" sx={orderNumberTextStyles}>
         {order.number}
@@ -46,12 +43,12 @@ export const getOrdersColumns = ({
     ),
   },
   {
-    title: 'Дата создания',
+    title: ordersPageText.columns.createdAt,
     align: Position.Center,
     render: (order) => formatDate(order.createdAt),
   },
   {
-    title: 'Статус',
+    title: ordersPageText.columns.status,
     align: Position.Center,
     render: (order) => (
       <Chip
@@ -65,8 +62,8 @@ export const getOrdersColumns = ({
     title: '',
     width: '140px',
     render: (order) => (
-      <Box sx={orderActionsStyles}>
-        <Tooltip title="Удалить заказ">
+      <Box sx={orderRowActionsStyles}>
+        <Tooltip title={ordersPageText.actions.delete}>
           <IconButton
             onClick={(event) => {
               event.stopPropagation();
@@ -75,7 +72,7 @@ export const getOrdersColumns = ({
             <DeleteOutlineOutlinedIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Редактировать заказ">
+        <Tooltip title={ordersPageText.actions.edit}>
           <IconButton
             onClick={(event) => {
               event.stopPropagation();
@@ -84,7 +81,7 @@ export const getOrdersColumns = ({
             <EditOutlinedIcon />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Изменить статус заказа">
+        <Tooltip title={ordersPageText.actions.changeStatus}>
           <IconButton
             onClick={(event) => {
               event.stopPropagation();

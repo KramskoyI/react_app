@@ -27,8 +27,14 @@ import {
 
 import { CustomTable, TitlePage } from '@shared/ui';
 
-import { getWarehouseColumns } from '../model/getWarehouseColumns';
-import { addPositionButtonStyles, warehouseActionsStyles } from './styles';
+import { warehousePageText } from './content';
+import { getWarehouseColumns } from './getWarehouseColumns';
+import {
+  addPositionButtonStyles,
+  warehouseActionsStyles,
+  warehouseAlertStyles,
+  warehouseLoadingStateStyles,
+} from './styles';
 
 const PRODUCTS_QUERY_KEY = ['products'];
 
@@ -111,7 +117,7 @@ export const WarehousePage = () => {
 
   return (
     <div>
-      <TitlePage text="Склад" />
+      <TitlePage text={warehousePageText.title} />
       <Box sx={warehouseActionsStyles}>
         <Button
           variant="outlined"
@@ -119,28 +125,30 @@ export const WarehousePage = () => {
           startIcon={<AddIcon />}
           sx={addPositionButtonStyles}
           onClick={() => setAddModalOpen(true)}>
-          Добавить позицию
+          {warehousePageText.addButton}
         </Button>
       </Box>
 
       {isLoading ? (
-        <Stack direction="row" spacing={1.5} alignItems="center" sx={{ py: 3 }}>
+        <Stack
+          direction="row"
+          spacing={1.5}
+          alignItems="center"
+          sx={warehouseLoadingStateStyles}>
           <CircularProgress size={20} />
-          <Typography color="text.secondary">Загрузка склада...</Typography>
+          <Typography color="text.secondary">{warehousePageText.loading}</Typography>
         </Stack>
       ) : null}
 
       {isError ? (
-        <Alert severity="error" sx={{ mt: 2 }}>
-          Не удалось загрузить данные склада. Проверь, что `json-server`
-          запущен командой `npm run start` или `npm run server`.
+        <Alert severity="error" sx={warehouseAlertStyles}>
+          {warehousePageText.loadError}
         </Alert>
       ) : null}
 
       {!isLoading && !isError && warehouseProducts.length === 0 ? (
-        <Alert severity="info" sx={{ mt: 2 }}>
-          На складе пока нет позиций. Добавь первую запись через кнопку
-          "Добавить позицию".
+        <Alert severity="info" sx={warehouseAlertStyles}>
+          {warehousePageText.emptyState}
         </Alert>
       ) : null}
 

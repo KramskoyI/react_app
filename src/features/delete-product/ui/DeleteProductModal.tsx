@@ -13,7 +13,11 @@ import type { TransitionProps } from '@mui/material/transitions';
 
 import type { DeleteProductModalProps } from '../model/types';
 import { deleteProductModalText } from './content';
-import { dialogTitleStyles } from './styles';
+import {
+  deleteProductInfoTextLooseStyles,
+  deleteProductInfoTextStyles,
+  dialogTitleStyles,
+} from './styles';
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -42,10 +46,10 @@ export const DeleteProductModal: FC<DeleteProductModalProps> = ({
         {deleteProductModalText.title}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText sx={{ mb: 1 }}>
+        <DialogContentText sx={deleteProductInfoTextStyles}>
           {deleteProductModalText.productLabel}: {product?.name ?? 'Не выбран'}
         </DialogContentText>
-        <DialogContentText sx={{ mb: 2 }}>
+        <DialogContentText sx={deleteProductInfoTextLooseStyles}>
           {deleteProductModalText.skuLabel}: {product?.sku ?? 'Не выбран'}
         </DialogContentText>
         <DialogContentText id="delete-product-dialog-description">
